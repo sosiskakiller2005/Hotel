@@ -30,7 +30,7 @@ namespace Hotel.AppData
             }
             else
             {
-                foreach (Staff user in users)
+                foreach (User user in users)
                 {
                     if (user.Login == login && user.Password == password)
                     {
