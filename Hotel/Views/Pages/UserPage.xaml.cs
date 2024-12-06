@@ -1,10 +1,10 @@
 ﻿using Hotel.AppData;
 using Hotel.Model;
+using Hotel.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,18 +13,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hotel.Views.Windows
+namespace Hotel.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для UserPage.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class UserPage : Page
     {
         private static User _selectedUser = AuthorisationHelper.selectedUser;
         private static Kozlov_Vlad_HotelEntities _context = App.GetContext();
-        public AdminWindow()
+        public UserPage()
         {
             InitializeComponent();
             UsersLv.ItemsSource = _context.User.ToList();
@@ -37,6 +38,15 @@ namespace Hotel.Views.Windows
             UserGrid.DataContext = UsersLv.SelectedItem as User;
         }
 
+        private void NewUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewUserWindow newUserWindow = new NewUserWindow();
+            if (newUserWindow.ShowDialog() == true)
+            {
+                UsersLv.ItemsSource = _context.User.ToList();
+            }
+        }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             _selectedUser.Fullname = FullnameTb.Text;
@@ -46,15 +56,6 @@ namespace Hotel.Views.Windows
             _selectedUser.IsBlocked = (bool)IsBlocked.IsChecked;
             _context.SaveChanges();
             MessageBox.Show("Информация изменена.");
-        }
-
-        private void NewUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NewUserWindow newUserWindow = new NewUserWindow();
-            if (newUserWindow.ShowDialog() == true)
-            {
-                UsersLv.ItemsSource = _context.User.ToList();
-            }
         }
     }
 }

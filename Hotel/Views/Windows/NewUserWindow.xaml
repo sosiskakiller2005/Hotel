@@ -1,0 +1,34 @@
+﻿<Window x:Class="Hotel.Views.Windows.NewUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Views.Windows"
+        mc:Ignorable="d"
+        Title="Добавить пользователя" SizeToContent="WidthAndHeight">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="ФИО:"/>
+        <TextBox Name="FullnameTb" Grid.Column="2"/>
+        <TextBlock Text="Логин:" Grid.Row="2"/>
+        <TextBox Name="LoginTB" Grid.Row="2" Grid.Column="2"/>
+        <TextBlock Text="Пароль:" Grid.Row="4"/>
+        <PasswordBox Name="PasswordTb" Grid.Row="4" Grid.Column="2"/>
+        <Button Name="AddBtn" Content="Добавить" Click="AddBtn_Click" Grid.Row="6"/>
+    </Grid>
+</Window>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hotel.AppData;
+using Hotel.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +28,22 @@ namespace Hotel.Views.Windows
 
         private void EntryBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (AuthorisationHelper.Authorise(LoginTb.Text, PasswordPb.Password))
+            {
+                switch (AuthorisationHelper.selectedUser.IsActivated)
+                {
+                    case true:
+                        UserWindow userWindow = new UserWindow();
+                        userWindow.Show();
+                        Close();
+                        break;
+                    case false:
+                        ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow();
+                        changePasswordWindow.Show();
+                        Close();
+                        break;
+                }
+            }
         }
     }
 }
